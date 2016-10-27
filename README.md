@@ -1,5 +1,5 @@
-# cali
-New Cali-Style.com built on Treefrog
+# treefrog-universal
+New bootplate for Treefrog + Universal
 
 ### Installation
 ```sh
