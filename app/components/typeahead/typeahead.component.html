@@ -1,0 +1,35 @@
+<div class="typeahead">
+  <input type="text"
+    class="typeahead-typeahead"
+    [(ngModel)]="typeahead"
+    typeahead="off"
+    spellcheck="false"
+    disabled="true"
+  >
+  <input #inputElement
+    [placeholder]="placeholder"
+    [(ngModel)]="input"
+    type="text"
+    [ngClass]="{'typeahead-input': true, 'typeahead-input-has-selection': hasSelection()}"
+    typeahead="off"
+    spellcheck="false"
+    (keyup)="inputKeyUp($event)"
+    (keydown)="inputKeyDown($event)"
+    (focus)="inputFocus($event)"
+    (blur)="inputBlur($event)"
+  >
+  <div #suggestionsContainer
+    class="typeahead-suggestions"
+    [hidden]="!areSuggestionsVisible"
+  >
+    <ul (mouseout)="suggestionsMouseOut($event)">
+      <li *ngFor="let suggestion of suggestions"
+        (mouseover)="suggestionMouseOver(suggestion)"
+        (mousedown)="suggestionMouseDown(suggestion)"
+        [ngClass]="{'typeahead-suggestion-active': activeSuggestion===suggestion}"
+      >
+        {{ suggestion[displayProperty] }}
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+# Files
+files:
+  include: 'app/style/scss/**/*.s+(a|c)ss'
+  ignore:
+    - 'node_module/**/*.scss'
+
+# Rules Configuration
+rules:
+  class-name-format:
+    - 1
+    -
+      convention: hyphenatedbem
+      convention-explanation: 'Hypenated BEM is required for Treefrog'
+  hex-length: 0
+  hex-notation: 0
+  no-vendor-prefixes: 0
+  no-ids: 0
+  nesting-depth:
+    - 1
+    -
+      max-depth: 3

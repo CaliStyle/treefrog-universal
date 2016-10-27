@@ -1,0 +1,30 @@
+// @import app;
+@import 'base';
+@import 'components/grid';
+
+app {
+  //@include grid-frame($orientation: vertical);
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  padding-top: rem-calc(75px);
+  padding-bottom: rem-calc(40px);
+  position: relative;
+  backface-visibility: hidden;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  -ms-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -ms-flex-order: 0;
+  order: 0;
+
+  @include breakpoint(medium) {
+    padding-bottom: rem-calc(75px);
+  }
+}

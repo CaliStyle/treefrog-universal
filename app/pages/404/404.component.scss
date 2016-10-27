@@ -1,0 +1,22 @@
+@import 'base';
+@import 'components/grid';
+@import 'components/button';
+
+:host {
+  @include grid-block(
+    $size: expand, // Can be expand, shrink, or a number of columns
+    $orientation: vertical, // Set to vertical for a vertical grid
+    $wrap: true, // Set to true to make columns wrap if they get too wide
+    // $align: center, // Can be left, right, center, justify, or spaced
+    $order: 0 // Can be any positive number
+  );
+}
+
+.fourzerofour__container {
+  @include grid-container(
+    $width: 100%, // Can be any unit with a value
+    $align: center // Can be left, right, or center
+  );
+  min-width: 100%;
+  overflow-y: auto;
+}

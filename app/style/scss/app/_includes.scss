@@ -1,0 +1,34 @@
+// Imported by BASE 
+// Base is exposed to frontend components
+// which don't need the output of the css
+// because the global displays it.
+
+
+$include-css: (
+  accordion: false,
+  action-sheet: false,
+  block-list: false,
+  button: false,
+  button-group: false,
+  card: false,
+  coloring: false,
+  extras: false,
+  forms: false,
+  grid: false,
+  iconic: false,
+  label: false,
+  badge: false,
+  list: false,
+  menu-bar: false,
+  modal: false,
+  motion: false,
+  notification: false,
+  off-canvas: false,
+  panel: false,
+  popup: false,
+  switch: false,
+  tabs: false,
+  title-bar: false,
+  typography: false,
+  utilities: false,
+);

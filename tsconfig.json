@@ -1,0 +1,79 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "declaration": false,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "baseUrl": ".",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "pretty" : true,
+    "sourceRoot": "./",
+    "sourceMap": true,
+    "outDir": "dist",
+    "lib": ["es6", "dom"],
+    "baseUrl": ".",
+    "types": [
+      "node",
+      "body-parser",
+      "express",
+      "winston",
+      "lodash"
+    ],
+    "paths": {
+      "@angular": [
+        "./node_modules/@angular"
+      ],
+      "@angular/express-engine": [
+        "./node_modules/angular2-express-engine"
+      ],
+      "angular2-universal/browser": [
+        "./node_modules/angular2-universal/browser"
+      ],
+      "angular2-universal/node": [
+        "./node_modules/angular2-universal/node"
+      ],
+      "angular2-universal/common": [
+        "./node_modules/angular2-universal/common"
+      ],
+      "angular2-universal": [
+        "./node_modules/angular2-universal"
+      ],
+      "angular2-express-engine": [
+        "./node_modules/angular2-express-engine"
+      ],
+      "angular2-platform-node": [
+        "./node_modules/angular2-platform-node"
+      ],
+      "@angular/platform-node": [
+        "./node_modules/angular2-platform-node"
+      ],
+      "rxjs/*": [
+        "./node_modules/rxjs-es/*"
+      ],
+      "lodash": [
+        "./node_modules/lodash"
+      ],
+      "@trailsapp/config": [
+        "./config"
+      ],
+      "@trailsapp/api": [
+        "./api"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "useWebpackText": true,
+    "forkChecker": true
+  },
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "atom": {
+    "rewriteTsconfig": false
+  }
+}

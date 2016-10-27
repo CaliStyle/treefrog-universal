@@ -1,0 +1,25 @@
+@import 'base';
+@import 'components/grid';
+@import 'components/menu-bar';
+
+:host {
+  @include grid-block(
+    $size: expand, // Can be expand, shrink, or a number of columns
+    $orientation: vertical, // Set to vertical for a vertical grid
+    $wrap: true, // Set to true to make columns wrap if they get too wide
+    // $align: center, // Can be left, right, center, justify, or spaced
+    $order: 0 // Can be any positive number
+  );
+}
+
+// Inherits from scss/app/_pages.scss
+
+h2 {
+  align-self: center;
+  font-weight: bold;
+}
+
+.button-submit {
+  background-color: $cali-blue;
+  color: #FFF;
+}

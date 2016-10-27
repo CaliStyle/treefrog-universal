@@ -1,0 +1,7 @@
+./test/index.js
+./test/**/*.test.js
+--reporter spec
+--recursive
+--slow 50
+--timeout 50000
+--globals app

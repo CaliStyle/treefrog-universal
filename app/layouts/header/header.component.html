@@ -1,0 +1,30 @@
+<div class="header__container">
+  <div class="menu-group dark">
+    <div class="menu-group-left">
+      <ul class="header__navbar title">
+        <li class="name">
+          <a [routerLink]="['/']">
+            <img src="/app/style/images/branding/cst_logo_dark.jpg">
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="menu-group-right">
+      <ul class="header__navbar">
+        <li>
+          <a
+            [routerLink]="['/about']"
+            routerLinkActive="is-active"
+          >About</a>
+        </li>
+        <li>
+          <a
+            [routerLink]="['/contact']"
+            routerLinkActive="is-active"
+            class="cta"
+          >Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

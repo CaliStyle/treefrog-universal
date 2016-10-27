@@ -1,0 +1,146 @@
+// CORE PROJECT SCSS
+
+// Make sure the charset is set appropriately
+@charset
+'UTF-8';
+
+// 3rd Party Libraries
+@import
+'vendor/normalize';
+
+// font paths are absoulte in sass and we expose node_modules to the router
+
+$fa-font-path: '/node_modules/font-awesome/fonts' !default;
+
+@import
+'font-awesome';
+
+// App Base Config
+@import 'app/base';
+
+// Treefrog Output CSS
+@import 'includes';
+
+// Treefrog Components
+@import
+'components/iconic',
+'components/action-sheet',
+'components/block-list',
+'components/button',
+'components/button-group',
+'components/card',
+'components/extras',
+'components/forms',
+'components/grid',
+'components/title-bar',
+'components/label',
+'components/list',
+'components/menu-bar',
+'components/modal',
+'components/motion',
+'components/notification',
+'components/off-canvas',
+'components/popup',
+'components/panel',
+'components/switch',
+'components/tabs',
+'components/accordion',
+'components/typography',
+'components/utilities';
+// Import treefrog plugins or other libraries Here
+
+// CORE PROJECT SCSS END
+
+// PROJECT SCSS
+@import 'app/layouts';
+@import 'app/pages';
+@import 'app/interfaces';
+@import 'app/directives';
+@import 'app/components';
+@import 'app/themes';
+// PROJECT SCSS END
+
+// PROJECT INCLUDE SCSS
+@import 'app/intercom';
+// PROJECT INCLUDE SCSS END
+
+@include exports(global) {
+  // Make extra sure we're using the whole window
+  html,
+  body {
+    font-size: $base-font-size;
+    height: 100%;
+  }
+  // Set box-sizing globally to handle padding and border widths
+  html {
+    box-sizing: border-box;
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+
+  // Default body styles
+  body {
+    background: $body-background;
+    color: $body-font-color;
+    font-family: $body-font-family;
+    font-weight: $body-font-weight;
+    font-style: $body-font-style;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    position: relative;
+
+    @if $body-antialiased {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  }
+
+  img {
+    // Grid Defaults to get images and embeds to work properly
+    // Get rid of gap under images by making them display: inline-block; by default
+    display: inline-block;
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+    -ms-interpolation-mode: bicubic;
+  }
+
+  iframe {
+    // Get rid of gap under images by making them display: inline-block; by default
+    display: inline-block;
+    height: auto;
+    margin-bottom: rem-calc($rem-base);
+    max-width: 100%;
+    vertical-align: middle;
+    -ms-interpolation-mode: bicubic;
+  }
+
+  // Give all anchors and interactive directives the hover cusor
+  a,
+  [routerLink] {
+    cursor: pointer;
+  }
+
+  #map-canvas,
+  .map-canvas {
+    img,
+    embed,
+    object {
+      max-width: none !important;
+    }
+  }
+
+  .padding {
+    padding: $global-padding;
+  }
+
+  #str-dlls,
+  #str-dev {
+    display: none;
+  }
+}

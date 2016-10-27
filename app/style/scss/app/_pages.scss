@@ -1,0 +1,257 @@
+// STYLE SCSS LINKER //
+// END STYLE SCSS LINKER //
+.page__container {
+  @include grid-container(
+    $width: 100%, // Can be any unit with a value
+    $align: center // Can be left, right, or center
+  );
+  min-width: 100%;
+  overflow-y: auto;
+
+  &--block {
+    @include grid-block(
+      $size: expand, // Can be expand, shrink, or a number of columns
+      $orientation: vertical, // Set to vertical for a vertical grid
+      $wrap: true, // Set to true to make columns wrap if they get too wide
+      // $align: center, // Can be left, right, center, justify, or spaced
+      $order: 0 // Can be any positive number
+    );
+  }
+}
+
+.page__container-header {
+  @include grid-content(
+    $size: expand, // Can be expand, shrink, or a number of columns
+    $offset: 0, // Number of columns to offset to the right by
+    $order: 0 // Can be any positive number
+  );
+  background: $dark-color;
+  margin-bottom: rem-calc($rem-base);
+  padding-bottom: rem-calc($rem-base * 2);
+  padding-top: rem-calc($rem-base * 2);
+  text-align: center;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    color: $white;
+    margin: auto;
+    max-width: 50ch;
+  }
+
+  h1 {
+    font-size: rem-calc(36px);
+    font-style: italic;
+    font-weight: bolder;
+  }
+
+  h2 {
+    font-size: 1.4375rem;
+    font-style: italic;
+  }
+
+  &+.page__container-image {
+    margin-bottom: rem-calc($rem-base);
+    margin-top: rem-calc(-$rem-base);
+  }
+}
+
+.page__container-body {
+  // small & medium
+  @include grid-content(
+    $size: 12, // Can be expand, shrink, or a number of columns
+    $offset: 0, // Number of columns to offset to the right by
+    $order: 0 // Can be any positive number
+  );
+  // Large
+  @include breakpoint(medium) {
+    @include grid-content(
+      $size: 9, // Can be expand, shrink, or a number of columns
+      $offset: 1.5, // Number of columns to offset to the right by
+      $order: 0 // Can be any positive number
+    );
+  }
+  // Large
+  @include breakpoint(large) {
+    @include grid-content(
+      $size: 6, // Can be expand, shrink, or a number of columns
+      $offset: 3, // Number of columns to offset to the right by
+      $order: 0 // Can be any positive number
+    );
+  }
+  padding-bottom: rem-calc($rem-base);
+  padding-top: rem-calc($rem-base);
+
+  &--large {
+    //small & medium
+    @include grid-content(
+      $size: 12, // Can be expand, shrink, or a number of columns
+      $offset: 0, // Number of columns to offset to the right by
+      $order: 0 // Can be any positive number
+    );
+    //large
+    @include breakpoint(medium) {
+      @include grid-content(
+        $size: 9, // Can be expand, shrink, or a number of columns
+        $offset: 1.5, // Number of columns to offset to the right by
+        $order: 0 // Can be any positive number
+      );
+    }
+    //large
+    @include breakpoint(large) {
+      @include grid-content(
+        $size: 9, // Can be expand, shrink, or a number of columns
+        $offset: 1.5, // Number of columns to offset to the right by
+        $order: 0 // Can be any positive number
+      );
+    }
+    padding-bottom: rem-calc($rem-base);
+    padding-top: rem-calc($rem-base);
+
+    h2 {
+      font-size: rem-calc(36px);
+      font-weight: bold;
+    }
+
+    p {
+      font-size: rem-calc(16px);
+      margin-bottom: rem-calc(20px);
+
+    }
+  }
+
+  &--full {
+    @include grid-content(
+      $size: 12, // Can be expand, shrink, or a number of columns
+      $offset: 0, // Number of columns to offset to the right by
+      $order: 0 // Can be any positive number
+    );
+    padding-bottom: rem-calc($rem-base);
+    padding-top: rem-calc($rem-base);
+
+    h2 {
+      font-size: rem-calc(36px);
+      font-weight: bold;
+    }
+
+    p {
+      font-size: rem-calc(16px);
+      margin-bottom: rem-calc(20px);
+
+    }
+  }
+
+  &--block {
+    @include grid-block(
+      $size: expand, // Can be expand, shrink, or a number of columns
+      $orientation: horizontal, // Set to vertical for a vertical grid
+      $wrap: true, // Set to true to make columns wrap if they get too wide
+      // $align: center, // Can be left, right, center, justify, or spaced
+      $order: 0 // Can be any positive number
+    );
+    margin: auto;
+    padding-bottom: rem-calc($rem-base);
+    padding-top: rem-calc($rem-base);
+  }
+
+  h2 {
+    font-size: rem-calc(36px);
+    font-weight: bold;
+  }
+
+  p {
+    font-size: rem-calc(16px);
+    margin-bottom: rem-calc(20px);
+
+    &.author {
+      font-style: italic;
+
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.page__container-cards {
+  @include grid-block(
+    $size: 12, // Can be expand, shrink, or a number of columns
+    $orientation: horizontal, // Set to vertical for a vertical grid
+    $wrap: true, // Set to true to make columns wrap if they get too wide
+    $align: center, // Can be left, right, center, justify, or spaced
+    $order: 0 // Can be any positive number
+  );
+  @include breakpoint(medium) {
+    @include grid-block(
+      $size: 9, // Can be expand, shrink, or a number of columns
+      $orientation: horizontal, // Set to vertical for a vertical grid
+      $wrap: true, // Set to true to make columns wrap if they get too wide
+      $align: center, // Can be left, right, center, justify, or spaced
+      $order: 0 // Can be any positive number
+    );
+  }
+
+  margin: auto;
+  min-height: rem-calc(500px);
+  padding-bottom: rem-calc($rem-base);
+
+  .grid-card {
+    @include grid-content(
+      $size: 12, // Can be expand, shrink, or a number of columns
+      $offset: 0, // Number of columns to offset to the right by
+      $order: 0 // Can be any positive number
+    );
+    @include breakpoint(medium) {
+      @include grid-content(
+        $size: 6, // Can be expand, shrink, or a number of columns
+        $offset: 0, // Number of columns to offset to the right by
+        $order: 0 // Can be any positive number
+      );
+    }
+    @include breakpoint(large) {
+      @include grid-content(
+        $size: 4, // Can be expand, shrink, or a number of columns
+        $offset: 0, // Number of columns to offset to the right by
+        $order: 0 // Can be any positive number
+      );
+    }
+    margin-bottom: rem-calc($rem-base);
+
+    .card {
+      h4 {
+        font-size: rem-calc(20px);
+      }
+
+      p {
+        font-size: rem-calc(14px);
+      }
+    }
+  }
+}
+
+table {
+  margin-bottom: rem-calc($rem-base);
+  width: 100%;
+
+  td {
+    padding: 0 rem-calc($rem-base / 4);
+  }
+}
+
+dl {
+  dt {
+    margin-bottom: rem-calc(4px);
+  }
+
+  dd {
+    display: list-item;
+    font-style: italic;
+    list-style-type: circle;
+    margin-bottom: rem-calc(4px);
+    margin-left: rem-calc($rem-base);
+  }
+}

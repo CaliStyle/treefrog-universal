@@ -1,0 +1,9 @@
+{
+  "taskmanager": "gulp",
+  "bundler": "webpack",
+  "javascript": "typescript",
+  "frontend": "angular",
+  "style": "treefrog",
+  "srcDir": "app",
+  "outDir": "dist"
+}
