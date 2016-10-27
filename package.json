@@ -160,6 +160,6 @@
       "nomen": 0
     }
   },
-  "repository": "https://github.com/gpazo/treefrog-universal.git",
-  "private": true
+  "repository": "https://github.com/calistyle/treefrog-universal.git",
+  "private": false
 }
