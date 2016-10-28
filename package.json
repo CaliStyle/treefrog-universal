@@ -145,7 +145,7 @@
     "test": "eslint --fix . && NODE_ENV=testing && npm run build && mocha ",
     "mocha": "NODE_ENV=testing mocha",
     "tslint": "tslint -c tslint.json **/*.ts",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build:dll && npm run build"
   },
   "engines": {
     "node": ">= 6.0.0",
