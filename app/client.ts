@@ -1,20 +1,14 @@
-import '../polyfills/polyfills.browser';
+import { platformUniversalDynamic } from 'angular2-universal';
+
 import { enableProdMode } from '@angular/core';
 enableProdMode();
-import { main as ngApp } from './main.browser';
 
-var _win: any = window;
+// import { main as ngApp } from './main.browser';
+import { MainModule } from './main.browser';
 
-_win.bootstrap = function bootstrap() {
-  console.time('Client Bootstrap Time:');
-  ngApp().then(() => {
-    console.timeEnd('Client Bootstrap Time:');
-  });
-}
+const platformRef = platformUniversalDynamic();
+document.addEventListener('DOMContentLoaded', () => {
 
+  platformRef.bootstrapModule(MainModule);
 
-if (document.readyState === 'complete') {
-  _win.bootstrap();
-} else {
-  document.addEventListener('DOMContentLoaded', _win.bootstrap);
-}
+});
