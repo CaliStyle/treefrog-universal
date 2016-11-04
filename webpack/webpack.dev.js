@@ -5,7 +5,6 @@ const commonConfig = require('./webpack.common') // the settings that are common
 const clone = require('js.clone')
 const path = require('path')
 
-
 /**
  * Treefrog Constants
  */
@@ -95,6 +94,7 @@ module.exports = function(options) {
       */
     new HtmlWebpackPlugin({
       template: `${srcDir}/index.ng2.html`,
+      filename: 'index.ng2.html',
       title: METADATA.title,
       chunksSortMode: 'dependency',
       metadata: METADATA,
@@ -145,6 +145,21 @@ module.exports = function(options) {
         }
       }
     }
+
+    /*
+     * Include polyfills or mocks for various node stuff
+     * Description: Node configuration
+     *
+     * See: https://webpack.github.io/docs/configuration.html#node
+     */
+    // node: {
+    //   global: 'window',
+    //   crypto: 'empty',
+    //   process: true,
+    //   module: false,
+    //   clearImmediate: false,
+    //   setImmediate: false
+    // }
   }
   return [
     helpers.plugins(sharedPlugins.concat(browserPlugins), commonConfig(clone(webpackConfig))[0]), // Browser

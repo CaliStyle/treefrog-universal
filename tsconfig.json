@@ -5,7 +5,6 @@
     "declaration": false,
     "noImplicitAny": false,
     "removeComments": true,
-    "baseUrl": ".",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "pretty" : true,

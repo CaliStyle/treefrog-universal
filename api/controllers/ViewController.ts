@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { Controller } from 'trails-api';
+import { ExpressEngineConfig } from 'angular2-express-engine';
 import { MainModule } from '../../app/main.node';
 
 /**
@@ -10,21 +11,18 @@ export class ViewController extends Controller {
 
   index(req: Request, res: Response ) {
     const originUrl = req.protocol && req.get('host') ? req.protocol + '://' + req.get('host') : 'http://localhost:3000';
-    const baseRef: any = '/';
+    const baseRef: string =  req.baseUrl && req.baseUrl !== '' ? req.baseUrl : '/';
 
-    res.render('index', {
+    const expressConfig : ExpressEngineConfig = {
       req,
       res,
       ngModule: MainModule,
       originUrl: originUrl,
-      baseUrl: req.baseUrl || baseRef,
+      baseUrl: baseRef,
       requestUrl: req.url || baseRef,
-      async: true,
-      precache: true,
-      preboot: {
-        appRoot: ['app'],
-        buffer: true
-      }
-    });
+      preboot: false
+    };
+
+    res.render('index', expressConfig);
   }
 }

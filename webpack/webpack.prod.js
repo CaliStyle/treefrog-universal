@@ -82,6 +82,7 @@ module.exports = function(options) {
       */
     new HtmlWebpackPlugin({
       template: `${srcDir}/index.ng2.html`,
+      filename: 'index.ng2.html',
       title: METADATA.title,
       chunksSortMode: 'dependency',
       metadata: METADATA,
@@ -137,7 +138,7 @@ module.exports = function(options) {
     plugins: [
       // don't define plugins here. define them above in shared plugins
     ],
-    
+
     /*
      * Include polyfills or mocks for various node stuff
      * Description: Node configuration

@@ -1,4 +1,5 @@
-import './polyfills/polyfills.node';
+//import './polyfills/polyfills.node';
+import 'angular2-universal-polyfills';
 
 import { enableProdMode } from '@angular/core';
 // Enable production mode

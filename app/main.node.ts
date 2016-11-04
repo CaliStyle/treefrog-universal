@@ -1,5 +1,7 @@
 import { NgModule, Component, Injectable, Renderer } from '@angular/core';
-import { UniversalModule, platformUniversalDynamic, createGlobalProxy } from 'angular2-universal';
+import { UniversalModule, isBrowser, isNode, platformUniversalDynamic, createGlobalProxy } from 'angular2-universal';
+import { CacheService } from './services/cache/universal-cache';
+import { ApiService } from './services/api/api';
 import { platformNodeDynamic } from 'angular2-platform-node';
 
 // Our Root Component
@@ -53,14 +55,27 @@ function s4() {
     ],
 
     providers: [
+      { provide: 'isBrowser', useValue: isBrowser },
+      { provide: 'isNode', useValue: isNode },
+      ApiService,
+      CacheService,
       appRoutingProviders,
       ...NODE_LOG_PROVIDERS,
       ...NODE_EMAILER_PROVIDERS,
 
     ]
   })
-export class MainModule {
-  constructor() {
-    createGlobalProxy();
+  export class MainModule {
+    constructor(
+      public cache: CacheService
+    ) {
+      createGlobalProxy();
+    }
+    // we need to use the arrow function here to bind the context as this is a gotcha in Universal for now until it's fixed
+    universalDoDehydrate = (universalCache) => {
+      universalCache['Cache'] = JSON.stringify(this.cache.dehydrate());
+    }
+    universalAfterDehydrate = () => {
+      this.cache.clear();
+    }
   }
-}

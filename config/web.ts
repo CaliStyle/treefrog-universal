@@ -2,9 +2,8 @@ const express = require('express')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 
-// Angular 2 Universal
-const ng2ExpressEngine = require('angular2-express-engine')
-// console.log(process.env.NODE_ENV, process.env.HOST, process.env.PORT)
+import { createEngine, ExpressEngineConfig } from 'angular2-express-engine';
+import { MainModule } from '../app/main.node';
 
 /**
  * Server Configuration
@@ -31,6 +30,7 @@ module.exports = {
 
     //middlewares loading order
     order: [
+      // 'redirect',
       'nonWww',
       'https',
       'static',
@@ -65,6 +65,11 @@ module.exports = {
       res.set('X-Powered-By', 'Treefrog <cali-style.com>')
       next()
     },
+    // redirect: function(app, next) {
+    //   redirect(app)
+    //   app.redirect('/cali-style.php?Action=2&k=node.js-development-company', '/', 301);
+    //   next()
+    // },
     nonWww: function(req, res, next) {
       // console.log("ENV NON_WWW", process.env.NON_WWW, req.host)
       if (process.env.NON_WWW && req.host.match(/^www/) !== null ) {
@@ -81,7 +86,6 @@ module.exports = {
     },
     https: function(req, res, next){
       // console.log("ENV FORCE_HTTPS", process.env.FORCE_HTTPS, req.headers['x-forwarded-proto'])
-
       if (process.env.FORCE_HTTPS) {
         if (req.headers['x-forwarded-proto'] !== 'https') {
           return res.redirect('https://' + req.host + req.url)
@@ -120,15 +124,15 @@ module.exports = {
    * Alternate method to add multiple template engine, for single view template use config.views.engine
    */
   views: {
+    engines: {
+      'ng2.html': createEngine({
+        precompile: true,
+        ngModule: MainModule
+      })
+    },
     // engines: {
     //   'ng2.html': 'html'
     // },
-    engines: {
-      'html': ng2ExpressEngine.createEngine({})
-    },
-    /*engines: {
-      ejs: 'ejs'
-    },*/
     path: require('../treefrog.json').outDir
   }
 

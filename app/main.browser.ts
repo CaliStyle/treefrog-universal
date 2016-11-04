@@ -1,11 +1,15 @@
+import 'angular2-universal-polyfills';
+import '../polyfills/polyfills.browser';
 import { NgModule, APP_ID, Inject } from '@angular/core';
 import { HttpModule, JsonpModule } from '@angular/http';
-import { UniversalModule, isBrowser, platformUniversalDynamic } from 'angular2-universal';
+import { UniversalModule, isBrowser, isNode } from 'angular2-universal';
 import { Title } from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-
+//Custom Services
+import { CacheService } from './services/cache/universal-cache';
+import { ApiService } from './services/api/api';
 
 // Our Root Component
 import { AppComponent } from './app.component';
@@ -22,43 +26,36 @@ import { routing, appRoutingProviders } from './app.routes';
 // Our Providers
 import { BROWSER_LOG_PROVIDERS } from './services/log/browser';
 import { BROWSER_EMAILER_PROVIDERS } from './services/emailer/browser';
+// Browser Container (aka Module)
+@NgModule({
+  bootstrap: [AppComponent],
+  declarations: [AppComponent],
+  imports: [
+    // Standard imports
+    UniversalModule,
+    CommonModule,
+    FormsModule,
 
+    // Our imports
+    routing,
+    LayoutsModule,
+    PagesModule,
+    ComponentsModule,
+    InterfacesModule,
+    DirectivesModule,
 
-export const platform = platformUniversalDynamic();
-
-export function main() {
-  // Browser Container (aka Module)
-  @NgModule({
-    bootstrap    : [ AppComponent ],
-    declarations : [
-      AppComponent
-    ],
-    imports : [
-      // Standard imports
-      UniversalModule,
-      CommonModule,
-      FormsModule,
-
-      // Our imports
-      routing,
-      LayoutsModule,
-      PagesModule,
-      ComponentsModule,
-      InterfacesModule,
-      DirectivesModule,
-
-    ],
-    providers: [
-      Title,
-      appRoutingProviders,
-      ...BROWSER_LOG_PROVIDERS,
-      ...BROWSER_EMAILER_PROVIDERS
-    ]
-  })
-  class MainModule {}
-  // Create our browser "platform"
-  // & Bootstrap our NgModule/Container to it
-  console.log('isBrowser', isBrowser);
-  // browserPlatform bootstrap
-  return platform.bootstrapModule(MainModule);
+  ],
+  providers: [
+    { provide: 'isBrowser', useValue: isBrowser },
+    { provide: 'isNode', useValue: isNode },
+    CacheService,
+    ApiService,
+    Title,
+    appRoutingProviders,
+    ...BROWSER_LOG_PROVIDERS,
+    ...BROWSER_EMAILER_PROVIDERS
+  ]
+})
+export class MainModule {
+  constructor(public cache: CacheService) {}
 }

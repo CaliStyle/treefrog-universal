@@ -73,6 +73,7 @@ module.exports = function(options) {
       */
     new HtmlWebpackPlugin({
       template: `${srcDir}/index.ng2.html`,
+      filename: 'index.ng2.html',
       title: METADATA.title,
       chunksSortMode: 'dependency',
       metadata: METADATA,
