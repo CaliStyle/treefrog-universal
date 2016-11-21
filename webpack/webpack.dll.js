@@ -16,6 +16,15 @@ module.exports = {
       '@angular/platform-browser-dynamic',
       '@angular/platform-server',
       '@angular/router',
+      '@ngrx/core',
+      '@ngrx/core/add/operator/select.js',
+      '@ngrx/effects',
+      '@ngrx/router-store',
+      '@ngrx/store',
+      '@ngrx/store-devtools',
+      '@ngrx/store-log-monitor',
+      'ngrx-store-freeze',
+      'ngrx-store-logger',
       'rxjs'
     ]
   },
