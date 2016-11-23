@@ -17,6 +17,9 @@ import { AppComponent } from './app.component';
 import { LayoutsModule } from './layouts/layouts.module';
 import { PagesModule } from './pages/pages.module';
 import { ComponentsModule } from './components/components.module';
+import { ReducersModule } from './reducers/reducers.module';
+import { EffectsModule } from './effects/effects.module';
+
 
 // Our Root routing & routingProviders
 import { routing, appRoutingProviders } from './app.routes';
@@ -39,6 +42,8 @@ import { BROWSER_EMAILER_PROVIDERS } from './services/emailer/browser';
     LayoutsModule,
     PagesModule,
     ComponentsModule,
+    ReducersModule,
+    EffectsModule,
 
   ],
   providers: [
