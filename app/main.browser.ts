@@ -7,6 +7,13 @@ import { Title } from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+//ngrx modules
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { DBModule } from '@ngrx/db';
+import { RouterStoreModule } from '@ngrx/router-store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 //Custom Services
 import { CacheService } from './services/cache/universal-cache';
 import { ApiService } from './services/api/api';
@@ -17,8 +24,6 @@ import { AppComponent } from './app.component';
 import { LayoutsModule } from './layouts/layouts.module';
 import { PagesModule } from './pages/pages.module';
 import { ComponentsModule } from './components/components.module';
-import { ReducersModule } from './reducers/reducers.module';
-import { EffectsModule } from './effects/effects.module';
 
 
 // Our Root routing & routingProviders
@@ -42,8 +47,6 @@ import { BROWSER_EMAILER_PROVIDERS } from './services/emailer/browser';
     LayoutsModule,
     PagesModule,
     ComponentsModule,
-    ReducersModule,
-    EffectsModule,
 
   ],
   providers: [

@@ -4,14 +4,19 @@ import { CacheService } from './services/cache/universal-cache';
 import { ApiService } from './services/api/api';
 import { platformNodeDynamic } from 'angular2-platform-node';
 
+//ngrx modules
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { DBModule } from '@ngrx/db';
+import { RouterStoreModule } from '@ngrx/router-store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 // Our Root Component
 import { AppComponent } from './app.component';
 
 import { LayoutsModule } from './layouts/layouts.module';
 import { PagesModule } from './pages/pages.module';
 import { ComponentsModule } from './components/components.module';
-import { ReducersModule } from './reducers/reducers.module';
-import { EffectsModule } from './effects/effects.module';
 
 // Our Root routing & routingProviders
 import { routing, appRoutingProviders} from './app.routes';
@@ -47,8 +52,6 @@ function s4() {
       LayoutsModule,
       PagesModule,
       ComponentsModule,
-      ReducersModule,
-      EffectsModule,
 
       // Trails Imports
 
