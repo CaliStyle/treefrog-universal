@@ -16,6 +16,7 @@ module.exports = {
       '@angular/platform-browser-dynamic',
       '@angular/platform-server',
       '@angular/router',
+      '@angular/material',
       '@ngrx/core',
       '@ngrx/core/add/operator/select.js',
       '@ngrx/effects',

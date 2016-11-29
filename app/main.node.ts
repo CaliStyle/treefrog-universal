@@ -10,6 +10,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { DBModule } from '@ngrx/db';
 import { RouterStoreModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { BookEffects } from './effects/book';
+import { CollectionEffects } from './effects/collection';
+import { reducer } from './reducers';
+import { schema } from './db';
 
 // Our Root Component
 import { AppComponent } from './app.component';
@@ -20,6 +24,8 @@ import { ComponentsModule } from './components/components.module';
 
 // Our Root routing & routingProviders
 import { routing, appRoutingProviders} from './app.routes';
+//ngrx google service
+import { GoogleBooksService } from './services/google-books';
 
 // Our Providers
 import { NODE_LOG_PROVIDERS } from './services/log/node';
@@ -53,6 +59,44 @@ function s4() {
       PagesModule,
       ComponentsModule,
 
+      //ngrx
+      //ngrx
+      /**
+        * StoreModule.provideStore is imported once in the root module, accepting a reducer
+        * function or object map of reducer functions. If passed an object of
+        * reducers, combineReducers will be run creating your application
+        * meta-reducer. This returns all providers for an @ngrx/store
+        * based application.
+      */
+      StoreModule.provideStore(reducer),
+
+     /**
+        * @ngrx/router-store keeps router state up-to-date in the store and uses
+        * the store as the single source of truth for the router's state.
+      */
+     RouterStoreModule.connectRouter(),
+
+      /**
+        * Store devtools instrument the store retaining past versions of state
+        * and recalculating new states. This enables powerful time-travel
+        * debugging.
+        *
+        * To use the debugger, install the Redux Devtools extension for either
+        * Chrome or Firefox
+        *
+        * See: https://github.com/zalmoxisus/redux-devtools-extension
+        */
+      StoreDevtoolsModule.instrumentOnlyWithExtension(),
+      /**
+        * EffectsModule.run() sets up the effects class to be initialized
+        * immediately when the application starts.
+        *
+        * See: https://github.com/ngrx/effects/blob/master/docs/api.md#run
+      */
+      EffectsModule.run(BookEffects),
+      EffectsModule.run(CollectionEffects),
+
+
       // Trails Imports
 
     ],
@@ -65,7 +109,7 @@ function s4() {
       appRoutingProviders,
       ...NODE_LOG_PROVIDERS,
       ...NODE_EMAILER_PROVIDERS,
-
+      GoogleBooksService
     ]
   })
   export class MainModule {
