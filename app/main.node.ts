@@ -25,11 +25,11 @@ import { ComponentsModule } from './components/components.module';
 // Our Root routing & routingProviders
 import { routing, appRoutingProviders} from './app.routes';
 //ngrx google service
-import { GoogleBooksService } from './services/google-books';
 
 // Our Providers
 import { NODE_LOG_PROVIDERS } from './services/log/node';
 import { NODE_EMAILER_PROVIDERS } from './services/emailer/node';
+import { NODE_GOOGLEBOOKS_PROVIDERS } from './services/google/node';
 
 export const platform = platformNodeDynamic();
 
@@ -95,6 +95,11 @@ function s4() {
       */
       EffectsModule.run(BookEffects),
       EffectsModule.run(CollectionEffects),
+      /**
+        * `provideDB` sets up @ngrx/db with the provided schema and makes the Database
+        * service available.
+      */
+      DBModule.provideDB(schema),
 
 
       // Trails Imports
@@ -109,7 +114,7 @@ function s4() {
       appRoutingProviders,
       ...NODE_LOG_PROVIDERS,
       ...NODE_EMAILER_PROVIDERS,
-      GoogleBooksService
+      ...NODE_GOOGLEBOOKS_PROVIDERS,
     ]
   })
   export class MainModule {

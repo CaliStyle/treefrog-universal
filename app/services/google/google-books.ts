@@ -2,11 +2,20 @@ import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Book } from '../models/book';
+import { Book } from '../../models/book';
 
-
+// Abstract Class to Catch implementations
+export class GoogleBooksEnviroment {
+  searchBooks(queryTitle: string): Observable<Book[]> {
+    throw new Error('Error searchBooks GoogleBooksEnvironment')
+  }
+  retrieveBook(volumeId: string): Observable<Book> {
+    throw new Error('Error retrieveBook GoogleBooksEnvironment')
+  }
+}
+// Emailer -> EmailerEnviroment
 @Injectable()
-export class GoogleBooksService {
+export class GoogleBooks {
   private API_PATH: string = 'https://www.googleapis.com/books/v1/volumes';
 
   constructor(private http: Http) {}

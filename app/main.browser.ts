@@ -23,7 +23,7 @@ import { CacheService } from './services/cache/universal-cache';
 import { ApiService } from './services/api/api';
 
 //ngrx google service
-import { GoogleBooksService } from './services/google-books';
+import { GoogleBooks } from './services/google/google-books';
 
 // Our Root Component
 import { AppComponent } from './app.component';
@@ -39,6 +39,7 @@ import { routing, appRoutingProviders } from './app.routes';
 // Our Providers
 import { BROWSER_LOG_PROVIDERS } from './services/log/browser';
 import { BROWSER_EMAILER_PROVIDERS } from './services/emailer/browser';
+import { BROWSER_GOOGLEBOOKS_PROVIDERS } from './services/google/browser';
 // Browser Container (aka Module)
 @NgModule({
   bootstrap: [AppComponent],
@@ -84,6 +85,11 @@ import { BROWSER_EMAILER_PROVIDERS } from './services/emailer/browser';
     */
     EffectsModule.run(BookEffects),
     EffectsModule.run(CollectionEffects),
+    /**
+      * `provideDB` sets up @ngrx/db with the provided schema and makes the Database
+      * service available.
+    */
+    DBModule.provideDB(schema),
 
     // Our imports
     routing,
@@ -101,7 +107,7 @@ import { BROWSER_EMAILER_PROVIDERS } from './services/emailer/browser';
     appRoutingProviders,
     ...BROWSER_LOG_PROVIDERS,
     ...BROWSER_EMAILER_PROVIDERS,
-    GoogleBooksService
+    ...BROWSER_GOOGLEBOOKS_PROVIDERS,
   ]
 })
 export class MainModule {

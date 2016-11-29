@@ -11,7 +11,7 @@ import { Router, CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
-import { GoogleBooksService } from '../services/google-books';
+import { GoogleBooks } from '../services/google/google-books';
 import * as fromRoot from '../reducers';
 import * as book from '../actions/book';
 
@@ -25,7 +25,7 @@ import * as book from '../actions/book';
 export class BookExistsGuard implements CanActivate {
   constructor(
     private store: Store<fromRoot.State>,
-    private googleBooks: GoogleBooksService,
+    private googleBooks: GoogleBooks,
     private router: Router
   ) { }
 

@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 import { empty } from 'rxjs/observable/empty';
 import { of } from 'rxjs/observable/of';
 
-import { GoogleBooksService } from '../services/google-books';
+import { GoogleBooks } from '../services/google/google-books';
 import * as book from '../actions/book';
 
 
@@ -31,7 +31,7 @@ import * as book from '../actions/book';
 
 @Injectable()
 export class BookEffects {
-  constructor(private actions$: Actions, private googleBooks: GoogleBooksService) { }
+  constructor(private actions$: Actions, private googleBooks: GoogleBooks) { }
 
 
   @Effect()
