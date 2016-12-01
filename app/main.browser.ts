@@ -14,9 +14,9 @@ import { DBModule } from '@ngrx/db';
 import { RouterStoreModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BookEffects } from './effects/book';
-import { CollectionEffects } from './effects/collection';
+//import { CollectionEffects } from './effects/collection';
 import { reducer } from './reducers';
-import { schema } from './db';
+//import { schema } from './db';
 
 //Custom Services
 import { CacheService } from './services/cache/universal-cache';
@@ -60,11 +60,11 @@ import { BROWSER_GOOGLEBOOKS_PROVIDERS } from './services/google/browser';
     */
     StoreModule.provideStore(reducer),
 
-   /**
-      * @ngrx/router-store keeps router state up-to-date in the store and uses
-      * the store as the single source of truth for the router's state.
-    */
-   RouterStoreModule.connectRouter(),
+    /**
+       * @ngrx/router-store keeps router state up-to-date in the store and uses
+       * the store as the single source of truth for the router's state.
+     */
+    RouterStoreModule.connectRouter(),
 
     /**
       * Store devtools instrument the store retaining past versions of state
@@ -84,12 +84,12 @@ import { BROWSER_GOOGLEBOOKS_PROVIDERS } from './services/google/browser';
       * See: https://github.com/ngrx/effects/blob/master/docs/api.md#run
     */
     EffectsModule.run(BookEffects),
-    EffectsModule.run(CollectionEffects),
+    //EffectsModule.run(CollectionEffects),
     /**
       * `provideDB` sets up @ngrx/db with the provided schema and makes the Database
       * service available.
     */
-    DBModule.provideDB(schema),
+    //DBModule.provideDB(schema),
 
     // Our imports
     routing,
@@ -111,5 +111,5 @@ import { BROWSER_GOOGLEBOOKS_PROVIDERS } from './services/google/browser';
   ]
 })
 export class MainModule {
-  constructor(public cache: CacheService) {}
+  constructor(public cache: CacheService) { }
 }

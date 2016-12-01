@@ -1,51 +1,61 @@
-import { ViewEncapsulation, Component, OnInit } from '@angular/core';
-import { Router,  ActivatedRoute, NavigationStart, NavigationEnd, NavigationCancel, Event as NavigationEvent } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
-import { SlimLoadingBarService } from './components/loader/loader.module';
-import {enableProdMode} from '@angular/core';
-enableProdMode();
+import 'rxjs/add/operator/let';
+import { Observable } from 'rxjs/Observable';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import * as fromRoot from './reducers';
+import * as layout from './actions/layout';
+
 
 @Component({
   selector: 'app',
-  providers: [],
-  styleUrls: ['./style/scss/app.scss', './app.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <header-component></header-component>
+    <bc-layout>
+      <bc-sidenav [open]="showSidenav$ | async">
+        <bc-nav-item (activate)="closeSidenav()" routerLink="/" icon="book" hint="View your book collection">
+          My Collection
+        </bc-nav-item>
+        <bc-nav-item (activate)="closeSidenav()" routerLink="/book/find" icon="search" hint="Find your next book!">
+          Browse Books
+        </bc-nav-item>
+      </bc-sidenav>
+      <bc-toolbar (openMenu)="openSidenav()">
+        Book Collection
+      </bc-toolbar>
+
       <router-outlet></router-outlet>
-    <footer-component></footer-component>
-    <ng2-slim-loading-bar></ng2-slim-loading-bar>
+    </bc-layout>
   `
 })
-
 export class AppComponent implements OnInit {
-  title: string = 'Cali Style Technologies';
-  data = {};
-  server: string;
+  showSidenav$: Observable<boolean>;
 
-  constructor(
-    private router: Router,
-    private slimLoadingBarService: SlimLoadingBarService,
-  ){
-    this.router.events.subscribe((event: NavigationEvent) => {
-      if(event instanceof NavigationStart) {
-        this.slimLoadingBarService.start(() => {
-          console.log('Loading complete');
-        });
-      }
-      if(event instanceof NavigationCancel) {
-        this.slimLoadingBarService.complete();
-      }
-      if(event instanceof NavigationEnd) {
-        this.slimLoadingBarService.complete();
-      }
-    });
+  constructor(private store: Store<fromRoot.State>) {
+    /**
+     * Selectors can be applied with the `let` operator which passes the source
+     * observable to the provided function.
+     *
+     * More on `let`: https://gist.github.com/btroncone/d6cf141d6f2c00dc6b35#let
+     * More on selectors: https://gist.github.com/btroncone/a6e4347326749f938510#extracting-selectors-for-reuse
+     */
+    this.showSidenav$ = this.store.let(fromRoot.getShowSidenav);
+  }
+  ngOnInit(): void {}
+
+  ngAfterViewInit(): void {}
+
+  closeSidenav() {
+    /**
+     * All state updates are handled through dispatched actions in 'container'
+     * components. This provides a clear, reproducible history of state
+     * updates and user interaction through the life of our
+     * application.
+     */
+    this.store.dispatch(new layout.CloseSidenavAction());
   }
 
-  ngOnInit(): void {
-
-  }
-  ngAfterViewInit(): void {
-
+  openSidenav() {
+    this.store.dispatch(new layout.OpenSidenavAction());
   }
 }

@@ -36,7 +36,7 @@ module.exports = [
   },
   {
     method: [ 'GET' ],
-    path: '/about',
+    path: '/book/find',
     handler: 'ViewController.index',
     config: {
 
@@ -44,85 +44,12 @@ module.exports = [
   },
   {
     method: [ 'GET' ],
-    path: '/about:route',
+    path: '/book/:id',
     handler: 'ViewController.index',
     config: {
 
     }
   },
-  {
-    method: [ 'GET' ],
-    path: '/blog',
-    handler: 'ViewController.index',
-    config: {
-
-    }
-  },
-  {
-    method: [ 'GET' ],
-    path: '/blog/:route',
-    handler: 'ViewController.index',
-    config: {
-
-    }
-  },
-  {
-    method: [ 'GET' ],
-    path: '/capabilities',
-    handler: 'ViewController.index',
-    config: {
-
-    }
-  },
-  {
-    method: [ 'GET' ],
-    path: '/capabilities/:route',
-    handler: 'ViewController.index',
-    config: {
-
-    }
-  },
-  {
-    method: [ 'GET' ],
-    path: '/contact',
-    handler: 'ViewController.index',
-    config: {
-
-    }
-  },
-  {
-    method: [ 'GET' ],
-    path: '/jobs',
-    handler: 'ViewController.index',
-    config: {
-
-    }
-  },
-  {
-    method: [ 'GET' ],
-    path: '/jobs/:route',
-    handler: 'ViewController.index',
-    config: {
-
-    }
-  },
-  {
-    method: [ 'GET' ],
-    path: '/showcase',
-    handler: 'ViewController.index',
-    config: {
-
-    }
-  },
-  {
-    method: [ 'GET' ],
-    path: '/showcase/:route',
-    handler: 'ViewController.index',
-    config: {
-
-    }
-  },
-
   /**
    * Allow GET Access to Node Modules
   */

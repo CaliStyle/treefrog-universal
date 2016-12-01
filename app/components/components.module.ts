@@ -25,7 +25,7 @@ import { Share } from './share/share.module';
     imports: [
       CommonModule,
       RouterModule,
-      MaterialModule,
+      MaterialModule.forRoot(),
       ReactiveFormsModule,
       FormsModule,
       SlimLoadingBarModule.forRoot(),

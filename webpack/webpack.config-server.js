@@ -26,6 +26,10 @@ module.exports = function(config) {
     ].concat(isProd ? [] : '@angularclass/hmr-loader?pretty=' + !isProd + '&prod=' + isProd),
     exclude: [/node_modules/]
   })
+  //patch ngrx/db
+  config.module.rules.unshift({
+     test: /@ngrx(\\|\/)db/, use: "imports-loader?window=>global"
+  })
 
   config.externals = helpers.ignoreAlias(config)
 

@@ -1,8 +1,20 @@
+import 'rxjs/add/operator/map';
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { Book } from '../../models/book';
+
 export class GoogleBooksBrowser {
-  searchBooks(data){
-    console.log(data)
+  private API_PATH: string = 'https://www.googleapis.com/books/v1/volumes';
+
+  constructor(private http: Http) {}
+
+  searchBooks(queryTitle: string): Observable<Book[]> {
+    return this.http.get(`${this.API_PATH}?q=${queryTitle}`)
+      .map(res => res.json().items || []);
   }
-  retrieveBook(data){
-    console.log(data)
+
+  retrieveBook(volumeId: string): Observable<Book> {
+    return this.http.get(`${this.API_PATH}/${volumeId}`)
+      .map(res => res.json());
   }
 }
