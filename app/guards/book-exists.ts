@@ -12,7 +12,7 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
 import { GoogleBooks } from '../services/google/google-books';
-import * as fromRoot from '../reducers';
+import * as fromRoot from '../reducers/index';
 import * as book from '../actions/book';
 
 

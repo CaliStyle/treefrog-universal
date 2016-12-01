@@ -3,7 +3,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import * as fromRoot from '../../reducers';
+import * as fromRoot from '../../reducers/index';
 import { Book } from '../../models/book';
 
 

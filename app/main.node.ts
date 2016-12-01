@@ -12,7 +12,7 @@ import { RouterStoreModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BookEffects } from './effects/book';
 //import { CollectionEffects } from './effects/collection';
-import { reducer } from './reducers';
+import { reducer } from './reducers/index';
 //import { schema } from './db';
 
 // Our Root Component
@@ -24,7 +24,6 @@ import { ComponentsModule } from './components/components.module';
 
 // Our Root routing & routingProviders
 import { routing, appRoutingProviders} from './app.routes';
-//ngrx google service
 
 // Our Providers
 import { NODE_LOG_PROVIDERS } from './services/log/node';

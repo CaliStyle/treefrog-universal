@@ -7,23 +7,9 @@ import { Title } from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-//ngrx modules
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { DBModule } from '@ngrx/db';
-import { RouterStoreModule } from '@ngrx/router-store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { BookEffects } from './effects/book';
-//import { CollectionEffects } from './effects/collection';
-import { reducer } from './reducers';
-//import { schema } from './db';
-
 //Custom Services
 import { CacheService } from './services/cache/universal-cache';
 import { ApiService } from './services/api/api';
-
-//ngrx google service
-import { GoogleBooks } from './services/google/google-books';
 
 // Our Root Component
 import { AppComponent } from './app.component';
@@ -32,6 +18,16 @@ import { LayoutsModule } from './layouts/layouts.module';
 import { PagesModule } from './pages/pages.module';
 import { ComponentsModule } from './components/components.module';
 
+//ngrx modules
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { DBModule } from '@ngrx/db';
+import { RouterStoreModule } from '@ngrx/router-store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { BookEffects } from './effects/book';
+//import { CollectionEffects } from './effects/collection';
+import { reducer } from './reducers/index';
+//import { schema } from './db';
 
 // Our Root routing & routingProviders
 import { routing, appRoutingProviders } from './app.routes';
