@@ -9,6 +9,6 @@ import { PagesNotFoundComponent } from './pages/book/not-found-page';
 export const defaultRoutes = [
   {path: '', component: PagesCollectionComponent, data: {}},
   {path: 'book/find', component: PagesFindBookComponent, data: {}},
-  {path: 'book/:id', canActivate: [BookExistsGuard], component: PagesViewBookComponent, data: {}},
+  {path: 'book/:id',  component: PagesViewBookComponent, data: {}},
   {path: '**', name:'NotFound', component: PagesNotFoundComponent, data: {}}
 ];

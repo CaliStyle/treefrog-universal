@@ -36,6 +36,7 @@ import { routing, appRoutingProviders } from './app.routes';
 import { BROWSER_LOG_PROVIDERS } from './services/log/browser';
 import { BROWSER_EMAILER_PROVIDERS } from './services/emailer/browser';
 import { BROWSER_GOOGLEBOOKS_PROVIDERS } from './services/google/browser';
+import { BookExistsGuard } from './guards/book-exists';
 // Browser Container (aka Module)
 @NgModule({
   bootstrap: [AppComponent],
@@ -99,6 +100,7 @@ import { BROWSER_GOOGLEBOOKS_PROVIDERS } from './services/google/browser';
     { provide: 'isNode', useValue: isNode },
     CacheService,
     ApiService,
+    BookExistsGuard,
     Title,
     appRoutingProviders,
     ...BROWSER_LOG_PROVIDERS,
