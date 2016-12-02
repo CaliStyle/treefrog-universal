@@ -15,34 +15,7 @@ import { Component, Output, Input, EventEmitter } from '@angular/core';
       </md-card-content>
     </md-card>
   `,
-  styles: [`
-    md-card-title,
-    md-card-content {
-      display: flex;
-      justify-content: center;
-    }
-
-    md-input {
-      width: 300px;
-    }
-
-    md-card-spinner {
-      padding-left: 60px; // Make room for the spinner
-    }
-
-    md-spinner {
-      width: 30px;
-      height: 30px;
-      position: relative;
-      top: 10px;
-      left: 10px;
-      opacity: 0.0;
-    }
-
-    md-spinner.show {
-      opacity: 1.0;
-    }
-  `]
+  styleUrls: ['./book-search.component.scss']
 })
 export class BookSearchComponent {
   @Input() query: string = '';

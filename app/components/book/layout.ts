@@ -10,15 +10,6 @@ import { Component } from '@angular/core';
 
     </md-sidenav-layout>
   `,
-  styles: [`
-    md-sidenav-layout {
-      background: rgba(0, 0, 0, 0.03);
-    }
-
-    *, /deep/ * {
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-  `]
+  styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent { }

@@ -21,35 +21,7 @@ import { Book } from '../../models/book';
       </md-card>
     </a>
   `,
-  styles: [`
-    md-card {
-      width: 400px;
-      height: 300px;
-      margin: 15px;
-    }
-    md-card-title {
-      margin-right: 10px;
-    }
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-    img {
-      width: 60px;
-      min-width: 60px;
-      margin-left: 5px;
-    }
-    md-card-content {
-      margin-top: 15px;
-    }
-    span {
-      display: inline-block;
-      font-size: 13px;
-    }
-    md-card-footer {
-      padding: 0 25px 25px;
-    }
-  `]
+  styleUrls: ['./book-preview.component.scss']
 })
 export class BookPreviewComponent {
   @Input() book: Book;
