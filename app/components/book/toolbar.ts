@@ -5,7 +5,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
   selector: 'bc-toolbar',
   styleUrls:['./toolbar.component.scss'],
   template: `
-    <md-toolbar color="primary">
+    <md-toolbar>
       <button md-icon-button (click)="openMenu.emit()">
         <md-icon>menu</md-icon>
       </button>

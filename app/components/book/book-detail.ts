@@ -18,11 +18,11 @@ import { Book } from '../../models/book';
         <bc-book-authors [book]="book"></bc-book-authors>
       </md-card-footer>
       <md-card-actions align="end">
-        <button md-raised-button color="warn" *ngIf="inCollection" (click)="remove.emit(book)">
+        <button md-raised-button *ngIf="inCollection" (click)="remove.emit(book)">
         Remove Book from Collection
         </button>
 
-        <button md-raised-button color="primary" *ngIf="!inCollection" (click)="add.emit(book)">
+        <button md-raised-button *ngIf="!inCollection" (click)="add.emit(book)">
         Add Book to Collection
         </button>
       </md-card-actions>

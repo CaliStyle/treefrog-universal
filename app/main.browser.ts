@@ -1,5 +1,6 @@
 import 'angular2-universal-polyfills';
 import '../polyfills/polyfills.browser';
+import 'hammerjs';
 import { NgModule, APP_ID, Inject } from '@angular/core';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { UniversalModule, isBrowser, isNode } from 'angular2-universal';
