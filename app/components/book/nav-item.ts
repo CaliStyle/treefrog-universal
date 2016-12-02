@@ -10,11 +10,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
       <span md-line class="secondary">{{ hint }}</span>
     </a>
   `,
-  styles: [`
-    .secondary {
-      color: rgba(0, 0, 0, 0.54);
-    }
-  `]
+  styleUrls: ['./nav-item.component.scss']
 })
 export class NavItemComponent {
   @Input() icon: string = '';

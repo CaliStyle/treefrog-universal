@@ -10,11 +10,7 @@ import { Book } from '../../models/book';
       {{ authors | bcAddCommas }}
     </span>
   `,
-  styles: [`
-    h5 {
-      margin-bottom: 5px;
-    }
-  `]
+  styleUrls: ['./book-authors.component.scss']
 })
 export class BookAuthorsComponent {
   @Input() book: Book;

@@ -29,35 +29,7 @@ import { Book } from '../../models/book';
     </md-card>
 
   `,
-  styles: [`
-    :host {
-      display: flex;
-      justify-content: center;
-      margin: 75px 0;
-    }
-    md-card {
-      max-width: 600px;
-    }
-    md-card-title {
-      margin-left: 10px;
-    }
-    img {
-      width: 60px;
-      min-width: 60px;
-      margin-left: 5px;
-    }
-    md-card-content {
-      margin-top: 15px;
-      margin-bottom: 125px;
-    }
-    md-card-actions {
-      margin-bottom: 0 !important;
-      margin-right: 0;
-    }
-    md-card-footer {
-      padding: 0 25px 25px;
-    }
-  `]
+  styleUrls: ['./book-detail.component.scss']
 })
 export class BookDetailComponent {
   /**
