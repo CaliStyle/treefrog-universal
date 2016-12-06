@@ -1,5 +1,4 @@
-import { Component, Input, OnInit, trigger, state, style, transition, animate }
-from '@angular/core';
+import { Component, Input, OnInit, trigger, state, style, transition, animate } from '@angular/core';
 import { Platform, platforms } from '../platforms.utils'
 import { Properties } from '../properties.utils'
 

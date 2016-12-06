@@ -15,6 +15,7 @@
     "baseUrl": ".",
     "types": [
       "node",
+      "hammerjs",
       "body-parser",
       "express",
       "winston",

@@ -3,6 +3,7 @@ from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Properties } from '../properties.utils'
 
+
 @Component({
   selector: 'share-container',
   templateUrl: './share-container.component.html',

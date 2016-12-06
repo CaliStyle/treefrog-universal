@@ -4,7 +4,7 @@ import {Pipe, PipeTransform} from '@angular/core'
 @Pipe({
   name: 'truncate'
 })
-export class Truncate implements PipeTransform {
+export class TruncatePipe implements PipeTransform {
   transform(value: string, arg1?:string , arg2?:string) : string {
 
     let limit = arg1 ? parseInt(arg1, 10) : 10;
