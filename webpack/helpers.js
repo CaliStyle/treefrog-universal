@@ -3,11 +3,17 @@
 const path = require('path')
 const clone = require('js.clone')
 
+const EVENT = process.env.npm_lifecycle_event || '';
+
 // Helper functions
 const ROOT = path.resolve(__dirname, '..')
 
 function hasProcessFlag(flag) {
   return process.argv.join('').indexOf(flag) > -1
+}
+
+function hasNpmFlag(flag) {
+  return EVENT.includes(flag);
 }
 
 function isWebpackDevServer() {
@@ -67,6 +73,7 @@ function checkNodeImport(context, request, cb) {
 exports.plugins = plugins
 exports.setTypeScriptAlias = setTypeScriptAlias
 exports.hasProcessFlag = hasProcessFlag
+exports.hasNpmFlag = hasNpmFlag
 exports.isWebpackDevServer = isWebpackDevServer
 exports.root = root
 exports.ignoreAlias = ignoreAlias

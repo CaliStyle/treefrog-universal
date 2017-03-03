@@ -36,6 +36,7 @@ module.exports = function(options) {
   const HOST = process.env.HOST
   const PORT = process.env.PORT
   const HMR = helpers.hasProcessFlag('hot')
+  const AOT = helpers.hasNpmFlag('aot')
   const NON_WWW = process.env.NON_WWW
   const FORCE_HTTPS = process.env.FORCE_HTTPS
   const METADATA = {
@@ -43,6 +44,7 @@ module.exports = function(options) {
     PORT: PORT,
     ENV: ENV,
     HMR: HMR,
+    AOT: AOT,
     NON_WWW: NON_WWW,
     FORCE_HTTPS: FORCE_HTTPS,
     title: 'Cali Style Technologies',
@@ -63,15 +65,24 @@ module.exports = function(options) {
     new DefinePlugin({
       'ENV': JSON.stringify(METADATA.ENV),
       'HMR': METADATA.HMR,
+      'AOT': METADATA.AOT,
       'process.env': {
         'ENV': JSON.stringify(METADATA.ENV),
-        'HMR': METADATA.HMR
+        'HMR': METADATA.HMR,
+        'AOT': METADATA.AOT
       }
-
     }),
+    /**
+     * Plugin: CopyWebpackPlugin
+     * Description: Copies files
+     */
     new CopyWebpackPlugin([
       { from: 'dll', to: srcDir }
     ]),
+    /**
+     * Plugin: DllReferencePlugin
+     * Description: Makes vendor libraries
+     */
     new DllReferencePlugin({
       context: path.resolve(__dirname, helpers.root(srcDir)),
       manifest: require(helpers.root('dll/vendor-manifest.json'))
@@ -126,44 +137,31 @@ module.exports = function(options) {
      * See: https://webpack.github.io/docs/webpack-dev-server.html
      */
     devServer: {
+      setup: (app) => {
+        // express middleware
+        app.get('/', (req, res) => {
+          res.sendFile(helpers.root('dist/index.ng2.html'));
+        });
+      },
       port: METADATA.PORT || 8080,
       host: METADATA.HOST || '0.0.0.0',
       historyApiFallback: true,
+      hot: true,
+      inline: true,
       watchOptions: {
         aggregateTimeout: 300,
         poll: 1000
       },
-      outputPath: helpers.root(outDir),
+      contentBase: helpers.root(srcDir),
       proxy: {
-        '/api/**': {
-          target: `http://localhost:${ METADATA.PORT || '3000'}`,
-          secure: false
-        },
-        '/node_modules/**': {
-          target: `http://localhost:${ METADATA.PORT || '3000'}`,
-          secure: false
+        '**' : {
+          target: `http://${HOST || '0.0.0.0'}:${PORT || 3000}`
         }
       }
     }
-
-    /*
-     * Include polyfills or mocks for various node stuff
-     * Description: Node configuration
-     *
-     * See: https://webpack.github.io/docs/configuration.html#node
-     */
-    // node: {
-    //   global: 'window',
-    //   crypto: 'empty',
-    //   process: true,
-    //   module: false,
-    //   clearImmediate: false,
-    //   setImmediate: false
-    // }
   }
   return [
     helpers.plugins(sharedPlugins.concat(browserPlugins), commonConfig(clone(webpackConfig))[0]), // Browser
     helpers.plugins(sharedPlugins.concat(serverPlugins), commonConfig(clone(webpackConfig))[1]) // Server
-    //helpers.plugins(sharedPlugins.concat(serverPlugins), commonConfig(clone(webpackMerge(devServerWebpackConfig, webpackConfig)))[1]) // Server
   ]
 }
