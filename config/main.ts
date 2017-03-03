@@ -23,7 +23,7 @@ module.exports = {
     require('trailpack-router'),
     require('trailpack-express'),
     require('trailpack-treefrog'),
-    require('trailpack-email')
+    require('trailpack-email'),
   ],
 
   /**

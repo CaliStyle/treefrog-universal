@@ -29,17 +29,19 @@ module.exports = function(options) {
   /**
    * Webpack Constants
    */
-  const ENV = process.env.NODE_ENV = process.env.ENV = options.env
+  const ENV = process.env.NODE_ENV
   const HOST = process.env.HOST
   const PORT = process.env.PORT
   const NON_WWW = process.env.NON_WWW
   const FORCE_HTTPS = process.env.FORCE_HTTPS
   const HMR = helpers.hasProcessFlag('hot')
+  const AOT = helpers.hasProcessFlag('aot')
   const METADATA = webpackMerge(commonConfig({env: ENV})[1].metadata, {
     HOST: HOST,
     PORT: PORT,
     ENV: ENV,
     HMR: HMR,
+    AOT: AOT,
     NON_WWW: NON_WWW,
     FORCE_HTTPS: FORCE_HTTPS
   })
@@ -57,6 +59,7 @@ module.exports = function(options) {
     new DefinePlugin({
       'ENV': JSON.stringify(METADATA.ENV),
       'HMR': METADATA.HMR,
+      'AOT': METADATA.AOT,
       'process.env': {
         'ENV': JSON.stringify(METADATA.ENV),
         'HMR': METADATA.HMR

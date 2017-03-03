@@ -33,6 +33,7 @@ module.exports = function(options) {
     PORT: PORT,
     ENV: ENV,
     HMR: false,
+    AOT: false,
     NON_WWW: NON_WWW,
     FORCE_HTTPS: FORCE_HTTPS
   })
@@ -49,15 +50,17 @@ module.exports = function(options) {
      */
     new DefinePlugin({
       'ENV': JSON.stringify(METADATA.env),
-      'HMR': METADATA.hmr,
+      'HMR': METADATA.HMR,
+      'AOT': METADATA.AOT,
       'process.env': {
         'ENV': JSON.stringify(METADATA.ENV),
         // 'NODE_ENV': JSON.stringify(METADATA.ENV),
         // 'PORT': METADATA.PORT,
         // 'HOST': JSON.stringify(METADATA.HOST),
-        'HMR': METADATA.HMR
-        // 'NON_WWW': METADATA.NON_WWW,
-        // 'FORCE_HTTPS': METADATA.FORCE_HTTPS
+        'HMR': METADATA.HMR,
+        'AOT': METADATA.AOT,
+        'NON_WWW': METADATA.NON_WWW,
+        'FORCE_HTTPS': METADATA.FORCE_HTTPS
       }
     })
   ]

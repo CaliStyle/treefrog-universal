@@ -23,7 +23,6 @@ module.exports = {
       '@ngrx/router-store',
       '@ngrx/store',
       '@ngrx/store-devtools',
-      '@ngrx/db',
       '@ngrx/store-log-monitor',
       'ngrx-store-freeze',
       'ngrx-store-logger',
